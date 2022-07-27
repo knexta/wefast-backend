@@ -1,7 +1,14 @@
-import express from 'express';
-import { MongoClient } from "mongodb";
 import dotenv from 'dotenv';
+import express from 'express';
+// import { MongoClient } from "mongodb";
+
 import cors from 'cors';
+import { mongo } from "./connection.js"
+import { loginRouter } from "./controllers/login.js";
+import { signUpRouter } from "./controllers/signup.js";
+import { forgotPasswordRouter } from "./controllers/forgetPassword.js"
+import { resetPasswordRouter } from "./controllers/resetPassword.js"
+import { userRouter} from "./routes/userRouter.js"
 
 
 dotenv.config();
@@ -15,19 +22,23 @@ app.use(express.json());
 // Mongo DB connection
 const MONGO_URL = process.env.MONGO_URL;
 
-async function createConnection() {
-    const client = new MongoClient(MONGO_URL);
-    await client.connect();
-    console.log("Mongodb connected!");
-    return client;
-}
-export const client = await createConnection();
+//Mongo db connection
+mongo();
 
 
 app.get("/", (request, response) => {
     response.send("Hello World...");
 })
 
+
+
+app.use("/login", loginRouter);
+app.use("/signup", signUpRouter);
+app.use("/forgot-password", forgotPasswordRouter);
+app.use("/reset-password", resetPasswordRouter);
+
+
+app.use("/users",userRouter);
 
 
 app.listen(PORT, () => console.log("App is started in ", PORT));

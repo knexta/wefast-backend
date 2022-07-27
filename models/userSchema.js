@@ -1,19 +1,36 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-c
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+const schema = new Schema({
+
     name: {
         type: String,
         required: true
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     password: {
         type: String,
         required: true
+    },
+    phone: {
+        type: Number,
+        required: true
+    },
+    additional_phone:{
+        type: Number,
+    
+    },
+    user_type:{
+        type:String,
+    },
+    isAdmin:{
+        type:Boolean,
+        default:(false),
     },
     resetLink: {                            //resetLink will trigger only on forgot password request is processed.
         dataType: String,
@@ -21,4 +38,5 @@ const userSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-export const User = mongoose.model('User', userSchema, "users")
+ const User = mongoose.model('User', schema)
+ export default User ;

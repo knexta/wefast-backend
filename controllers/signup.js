@@ -1,26 +1,34 @@
-import { User } from "../models/userSchema.js";
+import  User  from "../models/userSchema.js";
 import bcrypt from "bcrypt";
+import express from 'express';
+const router = express.Router();
 
-export const signup = async (req, res) => {
-    const { name, email, password } = req.body;
+router.route('/').post(async (req, res) => {
+    const { name, email, password ,phone, } = req.body;
 
-    const existUser = await User.findOne({ email: email }).exec();      //findOne will check the db with the email provided
+    const user = await User.findOne({ email: email });      //to find user
 
-    if (existUser) return res.status(400).send({ message: "Email already exists" })
+    if (user) {
+        return res.status(409).send({ message: "User with email already exists" })
+    }
 
-    const salt = await bcrypt.genSalt(10);                          //generating 10 random strings
-    const hashedPassword = await bcrypt.hash(password, salt)        //Hashing the password with the salt
+    // Password Hashing
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(password, salt)
 
-    const user = new User({                         //schema to add data to respective collection
+    const data = {
         name: name,
         email: email,
-        password: hashedPassword
-    })
-    try {
-        var response = await user.save();           //saving the data to respective collection
-        res.send({ message: "Successfully Registered!" })
+        password: hashedPassword,
+        phone:phone,
+        user_type:"",
+        isAdmin: false,
+        resetLink: ""
     }
-    catch (err) {
-        res.send(err);
-    }
-}
+
+    await User.create(data);
+    res.send({ message: "Account created successfully!" })
+})
+
+
+export const signUpRouter = router;
