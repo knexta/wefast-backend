@@ -6,9 +6,10 @@ import cors from 'cors';
 import { mongo } from "./connection.js"
 import { loginRouter } from "./controllers/login.js";
 import { signUpRouter } from "./controllers/signup.js";
-import { forgotPasswordRouter } from "./controllers/forgetPassword.js"
-import { resetPasswordRouter } from "./controllers/resetPassword.js"
-import { userRouter} from "./routes/userRouter.js"
+import { forgotPasswordRouter } from "./controllers/forgetPassword.js";
+import { resetPasswordRouter } from "./controllers/resetPassword.js";
+import { userRouter} from "./routes/userRouter.js";
+import { auth } from "./middleware/auth.js";
 
 
 dotenv.config();

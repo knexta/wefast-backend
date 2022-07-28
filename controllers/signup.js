@@ -4,7 +4,7 @@ import express from 'express';
 const router = express.Router();
 
 router.route('/').post(async (req, res) => {
-    const { name, email, password ,phone, } = req.body;
+    const { name, email, password ,phone, user_type} = req.body;
 
     const user = await User.findOne({ email: email });      //to find user
 
@@ -21,7 +21,7 @@ router.route('/').post(async (req, res) => {
         email: email,
         password: hashedPassword,
         phone:phone,
-        user_type:"",
+        user_type:user_type,
         isAdmin: false,
         resetLink: ""
     }
