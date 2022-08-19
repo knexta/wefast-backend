@@ -1,7 +1,6 @@
 {
   "name": "wefast-backend1",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -29,5 +28,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knexta/wefast-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/knexta/wefast-backend/issues"
+  },
+  "homepage": "https://github.com/knexta/wefast-backend#readme",
+  "description": ""
 }

@@ -1,9 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import twilio from 'twilio';
-// import { MongoClient } from "mongodb";
-
 import cors from 'cors';
+import twilio from 'twilio';
 import { mongo } from "./connection.js"
 import { loginRouter } from "./controllers/login.js";
 import { signUpRouter } from "./controllers/signup.js";
@@ -35,20 +33,7 @@ mongo();
 
 
 app.get("/", (request, response) => {
-  const accountSid = 'AC10d32a8b507f05c59ad3717683ab7474';
-  const authToken = 'df53eea0ce8446f865577e2dfcf5cec6';
-  // const client = require('twilio')(accountSid, authToken);
-  // const {accountSid, authToken}
-  const otp = 1100
-  const client = twilio(accountSid, authToken)
-  client.messages
-    .create({
-      body: `Please enter the OTP to verify , here is your otp ${otp}`,
-      messagingServiceSid: 'MG10e1c0a70d2f1c094e8ab6dc1e981db9',
-      to: '+9190350 65446'
-    })
-    .then(message => console.log(message.sid))
-    .done();
+  
   response.send("Hello World...");
 })
 
