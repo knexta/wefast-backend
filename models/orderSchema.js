@@ -3,6 +3,10 @@ import mongoose from "mongoose";
 const orderSchema = mongoose.Schema;
 
 const schema = new orderSchema({
+    weight: {
+        type: Number,
+        required: true
+    },
 
     pick_up_address: {
         type: String,
@@ -12,6 +16,11 @@ const schema = new orderSchema({
         type: Number,
         required: true,
         unique:true
+    },
+    pick_up_landmark: {
+        type: String,
+        required: true,
+        
     },
     contact_person: {
         type: String,
@@ -34,6 +43,11 @@ const schema = new orderSchema({
         type: Number,
         required: true,
         unique:true
+    },
+    delivery_landmark: {
+        type: String,
+        required: true,
+        
     },
     delivery_contact_person: {
         type: String,
