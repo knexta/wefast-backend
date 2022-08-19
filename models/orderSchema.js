@@ -22,6 +22,7 @@ const schema = new orderSchema({
         
     },
     buying_option:{
+        type:String,
         
     
     },
