@@ -4,25 +4,25 @@ const orderSchema = mongoose.Schema;
 
 const schema = new orderSchema({
     weight: {
-        type: Number,
-        required: true
-    },
-
-    pick_up_address: {
         type: String,
         required: true
     },
-    pick_up_mobile_no: {
-        type: Number,
-        required: true,
-        unique:true
+
+    pickup_address: {
+        type: String,
+        required: true
     },
-    pick_up_landmark: {
+    pickup_mobile_no: {
+        type: Number,
+        required: true
+        
+    },
+    pickup_landmark: {
         type: String,
         required: true,
         
     },
-    contact_person: {
+    pickup_contact_person: {
         type: String,
         
     },
@@ -42,7 +42,7 @@ const schema = new orderSchema({
     delivery_mobile_no: {
         type: Number,
         required: true,
-        unique:true
+        
     },
     delivery_landmark: {
         type: String,
@@ -58,6 +58,7 @@ const schema = new orderSchema({
         type:String,
     
     },
+   
     
 }, { timestamps: true })
 

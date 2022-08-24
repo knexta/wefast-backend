@@ -5,13 +5,39 @@ import { ObjectId}  from "mongodb";
 //create orders
 const createOrder = async(req,res)=>{
 
-    console.log("create order");
+  const { weight,pickup_address,pickup_mobile_no,pickup_landmark,pickup_contact_person,your_order_no,buying_option,delivery_address,delivery_mobile_no,delivery_landmark,delivery_contact_person,delivery_option}=req.body;
+
+
+if(!weight) return res.status(400).send({message:"Weight is mandatory...."});
+if(!pickup_address) return res.status(400).send({message:"pickup address is mandatory...."})
+if(!pickup_mobile_no) return res.status(400).send({message:"pickup_mobile_no is mandatory...."})
+if(!pickup_landmark) return res.status(400).send({message:"pickup_landmrk is mandatory...."})
+if(!delivery_address) return res.status(400).send({message:"delivery_address is mandatory...."})
+if(!delivery_mobile_no) return res.status(400).send({message:"delivery_mobile_no is mandatory...."})
+if(!delivery_landmark) return res.status(400).send({message:"delivery_landmrk is mandatory...."})
+
+
+ console.log("create order");
     try {
-      let order = { ...req.body };
+      // let order = { ...req.body };
+      let order = { 
+        weight:weight,
+        pickup_address:pickup_address,
+        pickup_mobile_no:pickup_mobile_no,
+        pickup_landmark:pickup_landmark,
+        pickup_contact_person:pickup_contact_person,
+        your_order_no: your_order_no,
+        buying_option:buying_option,
+        delivery_address:delivery_address,
+        delivery_mobile_no:delivery_mobile_no,
+        delivery_landmark:delivery_landmark,
+        delivery_contact_person:delivery_contact_person,
+        delivery_option:delivery_option
+       };
       const orderDetails = await Order.create(order);
-      res.status(200).send(orderDetails);
+      return res.status(200).send(orderDetails);
     } catch (err) {
-      res.status(500).send(err.message);
+      return res.status(500).send(err.message);
     }
 }
 

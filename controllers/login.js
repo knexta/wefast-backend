@@ -32,10 +32,10 @@ else{
     if(user_type=="business")
     {
         if(!email){
-            return res.status(400).send({ message: "email number is mandtory" })
+            return res.status(400).send({ message: "email  is mandtory" })
         }
         if(!password){
-            return res.status(400).send({ message: "password number is mandatory" })
+            return res.status(400).send({ message: "password  is mandatory" })
         }
 
     }

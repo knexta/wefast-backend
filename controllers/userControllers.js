@@ -9,6 +9,8 @@ export const getAllUser = async (req, res) => {
 
 //Update User
  export const updateUser = async (req,res)=>{
+if(!req.params.id){
+  res.status(400).send({message:"User Id is mandatory...."});}
     try {
         console.log(req.params.id);
         const updatedUser = await User.findOneAndUpdate(
@@ -26,6 +28,9 @@ export const getAllUser = async (req, res) => {
 
 //get user by id
  export const getUserById = async (req,res)=>{
+
+  
+
     try {
         const user = await User.findOne({
           _id: ObjectId(req.params.id),

@@ -54,12 +54,9 @@ router.route('/').post(async (req, res) => {
             if(!password) return res.status(400).send({ message: "Password is mandatory" })
             // validate otp
             const stored_data = await OTP.findOne({ phone: phone }); 
-            console.log(stored_data);
             if(stored_data){
-                if(stored_data.otp===otp)res.status(200).send({ message: "Account created successfully!" })
-                else{
-                   return res.status(400).send({ message: "Invalid OTP...." })
-                }
+                if(stored_data.otp!=otp)return res.status(400).send({ message: "Invalid OTP...." })
+               
             }
 
         }
